@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script>
+        angular.module('angular-intro', ['ngRoute'])
+            .config(function ($routeProvider) {
+                $routeProvider.when('/', {
+                    templateUrl: 'greeting.html',
+                    controller: 'grettingCtrl'
+                }).when('/about', {
+                    templateUrl: 'about.html',
+                    controller: 'aboutCtrl'
+                });
+            })
+            .controller('aboutCtrl', function () { })
+            .controller('grettingCtrl', function ($scope) {
+                $scope.greeting = function () {
+                    if ($scope.name && $scope.name != '') {
+                        return "Hello " + $scope.name + "!";
+                    }
+                    return "Please enter your name";
+                }
+            })
+
+    </script>
+</head>
+<body ng-app="angular-intro">
+
+
+    <ul>
+        <li><a href="#/">Greetings</a></li>
+        <li><a href="#/about">About</a></li>
+
+    </ul>
+
+    <div ng-view></div>
+
+</body>
+</html>

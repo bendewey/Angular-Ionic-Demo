@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="bower_components/bootstrap-css/css/bootstrap.css" rel="stylesheet" />
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+        angular.module('angular-intro', [])
+            .directive('panel', function () {
+
+                return {
+                    restrict: 'E',
+                    transclude: true,
+                    templateUrl: 'panel.html',
+                    scope: {
+                        title: '@'
+                    }
+                };
+
+            });
+
+    </script>
+</head>
+<body ng-app="angular-intro">
+
+    <div class="container">
+
+        <panel title="Title">
+            Content
+        </panel>
+
+        <panel title="Title">
+            Content2
+        </panel>
+
+        <panel>
+            Content3
+        </panel>
+
+    </div>
+
+    <script type="text/ng-template" id="panel.html">
+        <div class="panel panel-default">
+            <div class="panel-heading" ng-if="title">
+                <h5 class="panel-title">{{title}}</h5>
+            </div>
+            <div class="panel-body">
+                <div ng-transclude></div>
+            </div>
+        </div>
+    </script>
+</body>
+</html>
